@@ -22,9 +22,8 @@ export default {
                     },
                 });
             }
-
             //if it's not an api route, just do Vike SSR
-            const response = await handleSsr(request.url, userAgent)
+            const response = await handleSsr(request.url, userAgent,env)
             if (response !== null) return response
         }
         // Otherwise, serve the static assets.
@@ -42,11 +41,17 @@ function isApiUrl(url) {
     return pathname.startsWith("/api/");
 }
 
-async function handleSsr(url, userAgent) {
-
+async function handleSsr(url, userAgent,env) {
+    //get KV Data
+    const value = await env.POST_STORE.list();
+    //"list_complete": true,
+    //"cacheStatus": null
+    //"keys" has the data
+    const postsData = value.keys
     const pageContextInit = {
         urlOriginal: url,
         userAgent,
+        postsData: postsData
     }
     const pageContext = await renderPage(pageContextInit)
     const { httpResponse } = pageContext
