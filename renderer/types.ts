@@ -6,7 +6,8 @@ declare global {
     interface PageContext {
       Page: Page
       pageProps?: PageProps
-      urlPathname: string
+      urlPathname: string,
+      postsData: [], //will type this later
       exports: {
         documentProps?: {
           title?: string

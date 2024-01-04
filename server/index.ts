@@ -15,7 +15,9 @@ import express from 'express'
 import compression from 'compression'
 import { renderPage } from 'vike/server'
 import { root } from './root.js'
+import { Miniflare } from "miniflare";
 const isProduction = process.env.NODE_ENV === 'production'
+
 
 startServer()
 
@@ -51,8 +53,17 @@ async function startServer() {
   // Vike middleware. It should always be our last middleware (because it's a
   // catch-all middleware superseding any middleware placed after it).
   app.get('*', async (req, res, next) => {
+    //create miniflare server to mock cloudflare workers locally
+    const mf = new Miniflare({
+      modules: true,
+      scriptPath: "./server/worker.js",
+      kvNamespaces: ["POST_STORE"], //just a fake store
+    });
+    const resMf = await mf.dispatchFetch("http://localhost:8787/");
+    const postsData = await resMf.text(); 
     const pageContextInit = {
-      urlOriginal: req.originalUrl
+      urlOriginal: req.originalUrl,
+      postsData: postsData //send this data to the page context for use on pages
     }
     const pageContext = await renderPage(pageContextInit)
     const { httpResponse } = pageContext
@@ -66,6 +77,7 @@ async function startServer() {
       // For HTTP streams use httpResponse.pipe() instead, see https://vike.dev/stream
       res.send(body)
     }
+
   })
 
   const port = process.env.PORT || 3000
