@@ -31,7 +31,7 @@ router
   .all('/assets/*', (req, env) => {
     return env.ASSETS.fetch(req);
   })
-  .all('/assets/:file.:extension', (req, env) => {
+  .all('/assets/static/:file.:extension', (req, env) => {
     return env.ASSETS.fetch(req);
   })
   // 404 for everything else - just an example from the docs
