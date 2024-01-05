@@ -26,7 +26,7 @@ This repo comes with Tailwind installed. If you don't want Tailwind you can unin
 
 
 ## To Do
-1. Cloudflare Bindings and Worker Functions (i.e. API Endpoings): Right now, when in development mode, you can't use KV or other Cloudflare Bindings with this repo, or test any additional api routes (these will all return 404 in development), because Wrangler is not installed. Honestly, Wrangler is difficult to work with locally for something like Vike, so for now we are just leaving this as a To Do. We believe you can just use the Miniflare package to achieve local development for Pages with access to Bindings, without using Wrangler, but we are not familiar with Miniflare as a standalone package. This is an area for investigation.
+1. Cloudflare Bindings and Worker Functions (i.e. API Endpoings): Right now, when in development mode, you can't use KV or other Cloudflare Bindings with this repo, or test any additional api routes (these will all return 404 in development), because Wrangler is not installed. Honestly, Wrangler is difficult to work with locally for something like Vite (although [Vite is working on first-class support for non Node.js environments such Cloudflare workers](https://github.com/vitejs/vite/discussions/14288)). We believe you can just use the Miniflare package to achieve local development for Pages with access to Bindings, without using Wrangler, but we are not familiar with Miniflare as a standalone package. This is an area for investigation.
 
 Update: We have installed Miniflare on this repo and started the integration. You can now mock Cloudflare KV with this repo on dev.
 
