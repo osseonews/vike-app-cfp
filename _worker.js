@@ -17,7 +17,7 @@ export default {
                     case '/api/hello':
                         message = "hello"
                         break;
-                    case 'api/goodbye':
+                    case '/api/goodbye':
                         message = "goodbye"
                         break;
                     default:
