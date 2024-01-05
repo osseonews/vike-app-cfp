@@ -18,6 +18,9 @@ The dev environment does not use any Cloudflare features and is simply a classic
 - In the Set up builds and deployments, set npm run build as the Build command, and dist/client as the Build output directory. **Important: The output directory must be dist/client**  (Note: For framework preset, just choose None)
 - After completing configuration, select Save and Deploy.
 
+## Router
+This repo comes installed with [Itty Router](https://itty.dev/itty-router). This just makes it easier to control many types of routes, like API routes, that may not be served by Vike. Please read the Itty Router docs to better understand the usage. We created a simple api endpoint in the worker, which is called by a React component to demonstrate how this could be used.
+
 ## Styling
 This repo comes with Tailwind installed. If you don't want Tailwind you can uninstall the following packages: tailwindcss postcss autoprefixer, and remove the import of tailwind in, as well as renderer/index.css.
 

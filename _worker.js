@@ -20,22 +20,27 @@ router
       return env.ASSETS.fetch(req);
     }
   })
-  //add other routes, i.e. api routes, can be anything see itty docs. here we just go with /api and make sure its a post.
-  .get('/api/:id', ({ params }) => {
-    console.log ("params", params.id)
-    const todos = [
-      { id: '1', message: 'Pet the puppy' },
-      { id: '2', message: 'Pet the kitty' },
-    ]
-    const ID = params?.query?.id
-    if (ID) {
-      const todo = todos.find(t => t.id === ID)
-      return todo
+  //add other routes, i.e. api routes, can be anything see itty docs. here we just go with /api and make sure its a post request only.
+  .post('/api/:message', ({ params }) => {
+    //console.log ("params", params.message)
+    const expr = params?.message
+    let message;
+    switch (expr) {
+      case 'hello':
+        message = "hello"
+        break;
+      case 'goodbye':
+        message = "goodbye"
+        break;
+      default:
+        message = "Sorry, no message"
     }
-    //console.log ("env", env.BASIC_TOKEN)
-    return { todos }
+    const data = {
+      message,
+    };
+    return data
   })
-  
+
   //everything else serve with Vike 
   .all('*', async (req, env) => {
     const userAgent = req.headers.get('User-Agent') || ""
