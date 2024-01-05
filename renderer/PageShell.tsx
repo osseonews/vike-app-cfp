@@ -21,6 +21,12 @@ function PageShell({ children, pageContext }: { children: React.ReactNode; pageC
             <Link className="navitem" href="/about">
               About
             </Link>
+            <Link className="navitem" href="/collections/test">
+              Collections
+            </Link>
+            <Link className="navitem" href="/products/test">
+              Products
+            </Link>
           </Sidebar>
           <Content>{children}</Content>
         </Layout>
