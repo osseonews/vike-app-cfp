@@ -10,8 +10,21 @@ export default {
             //to do: maybe use a router library like itty or hono instead of these if/else with request.url?
             if (isApiUrl(request.url)) {
                 // TODO: Add your custom /api/* logic here. 
+                const { pathname: expr } = new URL(request.url);
+                console.log("expr fro routing", expr)
+                let message;
+                switch (expr) {
+                    case '/api/hello':
+                        message = "hello"
+                        break;
+                    case 'api/goodbye':
+                        message = "goodbye"
+                        break;
+                    default:
+                        message = "Sorry, no message"
+                }
                 const data = {
-                    hello: "world",
+                    message,
                 };
 
                 const json = JSON.stringify(data, null, 2);
@@ -23,7 +36,7 @@ export default {
                 });
             }
             //if it's not an api route, just do Vike SSR
-            const response = await handleSsr(request.url, userAgent,env)
+            const response = await handleSsr(request.url, userAgent, env)
             if (response !== null) return response
         }
         // Otherwise, serve the static assets.
@@ -41,7 +54,7 @@ function isApiUrl(url) {
     return pathname.startsWith("/api/");
 }
 
-async function handleSsr(url, userAgent,env) {
+async function handleSsr(url, userAgent, env) {
     //get KV Data - you need try catch here and return a backup array in case KV failes, which it can sometimes - I've seen outages
     const value = await env.POST_STORE.list();
     //"list_complete": true,
