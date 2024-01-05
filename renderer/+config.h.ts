@@ -7,5 +7,5 @@ export default {
   // !! WARNING !! Before doing so, read https://vike.dev/clientRouting */
 
   // See https://vike.dev/data-fetching
-  passToClient: ['pageProps', 'urlPathname','postsData']
+  passToClient: ['pageProps', 'urlPathname','postsData','routeParams']
 } satisfies Config

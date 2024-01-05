@@ -29,3 +29,5 @@ Update: We have installed Miniflare on this repo and started the integration. Yo
 
 2. Add Itty Router and then error for APIs and front end
 3. Protect API routes
+4. Catch collections/ and products/ blank, non-handle, routes. Right now going to products/ without a handle will cause an error 404 not found. Requires route functions. see: https://vike.dev/route-function and https://github.com/vikejs/vike/blob/main/examples/layouts-react/pages/starship/%2Broute.js
+5. 404 for handles not found for categories and products, example if products/nonexist - product doesn't exist throw 404
