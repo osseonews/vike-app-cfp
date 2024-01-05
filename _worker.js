@@ -49,7 +49,7 @@ router
     if (response !== null) return response
   })
 
-// Example: Cloudflare Worker module syntax
+// Cloudflare Worker module syntax
 export default {
   fetch: (req, env, ctx) =>
     router
