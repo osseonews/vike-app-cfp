@@ -4,25 +4,25 @@ import {
   //html,       // creates HTML responses
   //StatusError,
   Router,     // the ~440 byte router itself
-  withParams, // middleware: puts params directly on the Request
+  //withParams, // middleware: puts params directly on the Request
 } from 'itty-router'
 import { renderPage } from 'vike/server'
 
 const router = Router()
 
 router
-  // add some middleware upstream on all routes
-  //.all('*', withParams)
+  // add some middleware upstream on all routes to serve assets
+  // Pages requirement: Serve the static assets.
+  // Without this, the Worker will error and no assets will be served.
   .all('*', (req, env) => {
     const { pathname } = new URL(req.url);
     if (pathname.startsWith("/assets/")) {
       return env.ASSETS.fetch(req);
     }
   })
-
-  // Pages requirement: Serve the static assets.
-  // Without this, the Worker will error and no assets will be served.
-  .get('/todos', (params) => {
+  //add other routes, i.e. api routes, can be anything see itty docs. here we just go with /api and make sure its a post.
+  .get('/api/:id', ({ params }) => {
+    console.log ("params", params.id)
     const todos = [
       { id: '1', message: 'Pet the puppy' },
       { id: '2', message: 'Pet the kitty' },
