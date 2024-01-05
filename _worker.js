@@ -42,7 +42,7 @@ function isApiUrl(url) {
 }
 
 async function handleSsr(url, userAgent,env) {
-    //get KV Data
+    //get KV Data - you need try catch here and return a backup array in case KV failes, which it can sometimes - I've seen outages
     const value = await env.POST_STORE.list();
     //"list_complete": true,
     //"cacheStatus": null

@@ -1,3 +1,5 @@
+//see implementation here for KV: https://github.com/honojs/examples/blob/main/blog/src/model.ts
+//Remember you want a prefix for the id, or key, see here: https://developers.cloudflare.com/kv/api/list-keys/#list-method
 export default {
     async fetch(request, env) {
       const MOCK_POSTS = [
