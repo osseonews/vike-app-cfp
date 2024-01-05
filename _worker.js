@@ -28,7 +28,7 @@ router
     //console.log ("env", env.BASIC_TOKEN)
     return { todos }
   })
-  .all('/assets/*', (req, env) => {
+  .all('/assets/+', (req, env) => {
     return env.ASSETS.fetch(req);
   })
   // 404 for everything else - just an example from the docs
