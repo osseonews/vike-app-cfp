@@ -31,11 +31,15 @@ router
   .all('/assets/*', (req, env) => {
     return env.ASSETS.fetch(req);
   })
-  // 404 for everything else
-  .all('*', () => error(404))
+  // 404 for everything else - just an example from the docs
+  //.all('*', () => error(404))
   //everything else serve with Vike 
-  //.all('*', withVike)
-
+  .all('*', async (req, env) => {
+    const userAgent = req.headers.get('User-Agent') || ""
+    console.log('ua', userAgent)
+    const response = await handleSsr(req.url, userAgent, env)
+    if (response !== null) return response
+  })
 
 // Example: Cloudflare Worker module syntax
 export default {
@@ -46,13 +50,6 @@ export default {
       .catch(error),  // catch errors
 }
 
-// async Vike middleware
-const withVike = async (req, env) => {
-  const userAgent = req.headers.get('User-Agent') || ""
-  console.log('ua', userAgent)
-  const response = await handleSsr(req.url, userAgent, env)
-  if (response !== null) return response
-}
 
 async function handleSsr(url, userAgent, env) {
   //get KV Data - you need try catch here and return a backup array in case KV failes, which it can sometimes - I've seen outages
