@@ -15,11 +15,26 @@ router
   .all('*', withParams)
   // Pages requirement: Serve the static assets.
   // Without this, the Worker will error and no assets will be served.
+  .get('/todos', (params) => {
+    const todos = [
+      { id: '1', message: 'Pet the puppy' },
+      { id: '2', message: 'Pet the kitty' },
+    ]
+    const ID = params?.query?.id
+    if (ID) {
+      const todo = todos.find(t => t.id === ID)
+      return todo
+    }
+    //console.log ("env", env.BASIC_TOKEN)
+    return { todos }
+  })
   .all('/assets/*', (req, env) => {
     return env.ASSETS.fetch(req);
   })
+  // 404 for everything else
+  .all('*', () => error(404))
   //everything else serve with Vike 
-  .all('*', withVike)
+  //.all('*', withVike)
 
 
 // Example: Cloudflare Worker module syntax
