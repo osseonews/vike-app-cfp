@@ -1,6 +1,6 @@
 import './code.css'
 import React from 'react'
-
+//to do: try/catch for fetch, test response if ok, error message.
 export { Page }
 
 function Page() {
@@ -18,7 +18,8 @@ function Page() {
       method: 'get',
     })
     const data = await res.json()
-    console.log (data)
+    setMutateMessage(data.message)
+    setIsCreating(false)
 /*
     if (!result.success) {
       setIsCreating(false)
@@ -32,14 +33,25 @@ function Page() {
   if (isError) {
     return (<div>Error: {mutateMessage}</div>)
   }
-  const message = "hello"
+  
   return (
     <>
       <h1>About</h1>
       <p>Example of using Vikew.</p>
+      <p className="text-xl">{mutateMessage}</p>
       <p>
-        <button disabled={isCreating} type="button" onClick={() => handleClick(message)}>
-          Test Button
+        <button disabled={isCreating} type="button" onClick={() => handleClick("hello")}>
+          Test Hello Button
+        </button>
+      </p>
+      <p>
+        <button disabled={isCreating} type="button" onClick={() => handleClick("goodbye")}>
+          Test Goodbye Button
+        </button>
+      </p>
+      <p>
+        <button disabled={isCreating} type="button" onClick={() => handleClick("error")}>
+          Test Error Message
         </button>
       </p>
     </>
