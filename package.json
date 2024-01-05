@@ -3,13 +3,14 @@
     "dev": "npm run server:dev",
     "prod": "npm run lint && npm run build && npm run server:prod",
     "build": "rimraf dist && vite build && npm run move-worker",
-    "move-worker": "ncp _worker.js dist/client/_worker.js",
+    "move-worker": "ncp _worker.ts dist/client/_worker.ts",
     "server": "node --loader ts-node/esm ./server/index.ts",
     "server:dev": "npm run server",
     "server:prod": "cross-env NODE_ENV=production npm run server",
     "lint": "eslint . --max-warnings 0"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20231218.0",
     "@types/compression": "^1.7.5",
     "@types/express": "^4.17.21",
     "@types/node": "^20.10.4",
@@ -33,6 +34,7 @@
     "compression": "^1.7.4",
     "cross-env": "^7.0.3",
     "express": "^4.18.2",
+    "itty-router": "^4.0.26",
     "ncp": "^2.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

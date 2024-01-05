@@ -37,7 +37,7 @@ function Page() {
   return (
     <>
       <h1>About</h1>
-      <p>Example of using Vikew.</p>
+      <p>Example of using Vike with onClick handler and Cloudflare worker on backend. The buttons below will call an api route and render the message.</p>
       <p className="text-xl">{mutateMessage}</p>
       <p>
         <button disabled={isCreating} type="button" onClick={() => handleClick("hello")} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
