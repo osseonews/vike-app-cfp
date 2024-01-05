@@ -5,28 +5,15 @@ import {
   StatusError,
   Router,     // the ~440 byte router itself
   withParams, // middleware: puts params directly on the Request
-  IRequest,
 } from 'itty-router'
-import { KVNamespace, ExecutionContext } from '@cloudflare/workers-types'
-// define a custom RequestType
-type DaliRequest = {
-  customTopic?: string
-} & IRequest
 
-// declare what's available in our env
-export interface Env {
-  CL_TOKEN_STORE_DC1: KVNamespace
-  ASSETS: any,
-}
 
-// create a convenient duple
-type CF = [env: Env, context: ExecutionContext]
 const todos = [
   { id: '1', message: 'Pet the puppy' },
   { id: '2', message: 'Pet the kitty' },
 ]
 // then pass them to the Router
-const router = Router<DaliRequest, CF>()
+const router = Router()
 
 
 router
@@ -67,7 +54,7 @@ router
 
 // Example: Cloudflare Worker module syntax
 export default {
-  fetch: (req: IRequest, env: Env, ctx: ExecutionContext) =>
+  fetch: (req, env, ctx) =>
     router
       .handle(req, env, ctx)
       .then(json)     // send as JSON
