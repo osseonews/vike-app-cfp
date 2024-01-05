@@ -40,17 +40,17 @@ function Page() {
       <p>Example of using Vikew.</p>
       <p className="text-xl">{mutateMessage}</p>
       <p>
-        <button disabled={isCreating} type="button" onClick={() => handleClick("hello")}>
+        <button disabled={isCreating} type="button" onClick={() => handleClick("hello")} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
           Test Hello Button
         </button>
       </p>
       <p>
-        <button disabled={isCreating} type="button" onClick={() => handleClick("goodbye")}>
+        <button disabled={isCreating} type="button" onClick={() => handleClick("goodbye")} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
           Test Goodbye Button
         </button>
       </p>
       <p>
-        <button disabled={isCreating} type="button" onClick={() => handleClick("error")}>
+        <button disabled={isCreating} type="button" onClick={() => handleClick("error")} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
           Test Error Message
         </button>
       </p>

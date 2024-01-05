@@ -27,4 +27,5 @@ This repo comes with Tailwind installed. If you don't want Tailwind you can unin
 
 Update: We have installed Miniflare on this repo and started the integration. You can now mock Cloudflare KV with this repo on dev.
 
-2. Add Itty Router
+2. Add Itty Router and then error for APIs and front end
+3. Protect API routes
