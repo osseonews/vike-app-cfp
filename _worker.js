@@ -12,7 +12,14 @@ const router = Router()
 
 router
   // add some middleware upstream on all routes
-  .all('*', withParams)
+  //.all('*', withParams)
+  .all('*', (req, env) => {
+    const { pathname } = new URL(req.url);
+    if (pathname.startsWith("/assets/")) {
+      return env.ASSETS.fetch(req);
+    }
+  })
+
   // Pages requirement: Serve the static assets.
   // Without this, the Worker will error and no assets will be served.
   .get('/todos', (params) => {
@@ -28,14 +35,7 @@ router
     //console.log ("env", env.BASIC_TOKEN)
     return { todos }
   })
-  .all('/assets/*', (req, env) => {
-    return env.ASSETS.fetch(req);
-  })
-  .all('/assets/static/:file.:extension', (req, env) => {
-    return env.ASSETS.fetch(req);
-  })
-  // 404 for everything else - just an example from the docs
-  //.all('*', () => error(404))
+  
   //everything else serve with Vike 
   .all('*', async (req, env) => {
     const userAgent = req.headers.get('User-Agent') || ""
@@ -52,7 +52,6 @@ export default {
       .then(json)     // send as JSON
       .catch(error),  // catch errors
 }
-
 
 async function handleSsr(url, userAgent, env) {
   //get KV Data - you need try catch here and return a backup array in case KV failes, which it can sometimes - I've seen outages
