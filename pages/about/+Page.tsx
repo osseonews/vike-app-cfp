@@ -15,7 +15,7 @@ function Page() {
       headers: {
         'Content-Type': 'application/json',
       },
-      method: 'get',
+      method: 'post',
     })
     const data = await res.json()
     setMutateMessage(data.message)
