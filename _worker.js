@@ -7,7 +7,7 @@ import {
   //withParams, // middleware: puts params directly on the Request
 } from 'itty-router'
 import { renderPage } from 'vike/server'
-import { todos } from './data/posts' //default posts if KV fails for some reason
+//import { todos } from './data/posts' //default posts if KV fails for some reason
 
 const router = Router()
 
@@ -63,11 +63,16 @@ async function handleSsr(url, userAgent, env) {
   //get KV Data - you need try catch here and return a backup array in case KV failes, which it can sometimes - I've seen outages
   let postsData = []
   try { 
-    const value = await env.POST_STORE.list();
+    const value = await env.POST_STOREE.list(); //change name to throw error
     postsData = value.keys
   //we don't need to stop anything here, as this is just an issue with getting KV. We should set default posts here.
   } catch (error) {
     console.log ("error", error?.message || "KV Error Message")
+    //default posts. To do: place this in file
+    const todos = [
+      { id: '1', message: 'Pet the puppy'},
+      { id: '2', message: 'Pet the kitty'},
+    ]
     postsData = todos //if KV fails assign default posts
   }
   
