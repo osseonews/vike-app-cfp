@@ -63,7 +63,7 @@ async function handleSsr(url, userAgent, env) {
   //get KV Data - you need try catch here and return a backup array in case KV failes, which it can sometimes - I've seen outages
   let postsData = []
   try { 
-    const value = await env.POST_STOREE.list(); //change name to throw error
+    const value = await env.POST_STORE.list(); //change name to throw error
     postsData = value.keys
   //we don't need to stop anything here, as this is just an issue with getting KV. We should set default posts here.
   } catch (error) {
