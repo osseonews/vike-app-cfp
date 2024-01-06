@@ -17,6 +17,10 @@ The dev environment does not use any Cloudflare features and is simply a classic
 - Select your new GitHub repository.
 - In the Set up builds and deployments, set npm run build as the Build command, and dist/client as the Build output directory. **Important: The output directory must be dist/client**  (Note: For framework preset, just choose None)
 - After completing configuration, select Save and Deploy.
+5. Important: Make sure you create a KV Namespace for this page in Cloudflare called: POST_STORE. This Repo will NOT work automatically without a KV Namespace. See below.
+
+## KV Storage
+For demonstration purposes this repo uses KV Storage on Cloudflare Pages to show some posts. Create a KV Namespace in Pages, by going to Settings > Functions > KV namespace bindings and name it POST_STORE, and associate with the approriate KV Storage Namespace. If you do not want to use KV, simply comment out the KV call in _worker.js, line 63, and remove it from the pageContext. 
 
 ## Router
 This repo comes installed with [Itty Router](https://itty.dev/itty-router). This just makes it easier to control many types of routes, like API routes, that may not be served by Vike. Please read the Itty Router docs to better understand the usage. We created a simple api endpoint in the worker, which is called by a React component to demonstrate how this could be used.
