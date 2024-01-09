@@ -59,7 +59,8 @@ async function startServer() {
       scriptPath: "./server/worker.js",
       kvNamespaces: ["POST_STORE"], //just a fake store
     });
-    const resMf = await mf.dispatchFetch("http://localhost:8787/");
+    const fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+    const resMf = await mf.dispatchFetch(fullUrl);
     const postsData = await resMf.text(); 
     const pageContextInit = {
       urlOriginal: req.originalUrl,

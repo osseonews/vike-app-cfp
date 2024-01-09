@@ -1,5 +1,7 @@
 # Vike React on Cloudflare Pages by DaliCommerce
-This repo is a basic implemention of Vike (with React) to run on Cloudflare Pages. Also included: Tailwind...and more coming soon... We think Vike + Cloudflare Pages provides the single best platform for web apps, and is superior to NextJs for various reasons. Please note that since Vike is an agnostic platform, if another UI framework, such as Vue, is more to your liking, you should be able to fork this repo and easily replace React with another UI framework. Please just consult the appropriate examples at Vike.
+This repo is a basic implemention of Vike (with React) to run on Cloudflare Pages. Also included: Tailwind...and more coming soon...like ecommerce. Note: This is a work in progress. 
+
+We think Vike + Cloudflare Pages provides the single best platform for web apps, and is superior to NextJs for various reasons. Please note that since Vike is an agnostic platform, if another UI framework, such as Vue, is more to your liking, you should be able to fork this repo and easily replace React with another UI framework. Please just consult the appropriate examples at Vike.
 
 Why Vike? See their docs where they give powerful reasons why you might choose Vike.
 
@@ -34,7 +36,7 @@ This repo comes with Tailwind installed. If you don't want Tailwind you can unin
 
 Update: We have installed Miniflare on this repo and started the integration. You can now mock Cloudflare KV with this repo on dev.
 
-2. Add Itty Router and then error for APIs and front end
+2. Add Itty Router to Miniflare
 3. Protect API routes
 4. Catch collections/ and products/ blank, non-handle, routes. Right now going to products/ without a handle will cause an error 404 not found. Requires route functions. see: https://vike.dev/route-function and https://github.com/vikejs/vike/blob/main/examples/layouts-react/pages/starship/%2Broute.js
 5. 404 for handles not found for categories and products, example if products/nonexist - product doesn't exist throw 404
