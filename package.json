@@ -41,7 +41,7 @@
     "rimraf": "^5.0.5",
     "sirv": "^2.0.3",
     "vike": "^0.4.153",
-    "vite": "^5.0.10"
+    "vite": "^5.0.12"
   },
   "type": "module",
   "author": "Yehuda Fruchter for Dali Commerce"
